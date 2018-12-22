@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "UnTrump Reddit",
+  "version": "1.0",
+
+  "description": 
+  "Hides all Trump related posts from the frontpage.",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.reddit.com/", 
+        "*://*.reddit.com/r/*",
+        "*://*.reddit.com/hot/", 
+        "*://*.reddit.com/new",
+        "*://*.reddit.com/rising", 
+        "*://*.reddit.com/controversial/*",
+        "*://*.reddit.com/top/*"
+      ], 
+      "js": ["untrump.js"]
+    }
+  ],
+
+  "icons": {
+    "48": "icon.png"
+  },
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "/popup/popup.html"
+  },
+  
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
