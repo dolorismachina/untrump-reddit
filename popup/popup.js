@@ -18,10 +18,17 @@ function createList(matches) {
   const list = document.querySelector('ul')
 
   Object.keys(matches).forEach(k => {
-    const item = document.createElement('li')
-    item.textContent = k + ': ' + matches[k]
+    const item = createListItem({key: k, matches: matches[k]})
     list.appendChild(item)
   })
+}
+
+function createListItem(data) {
+  console.log(data)
+  const item = document.createElement('li')
+  item.textContent = data.key + ': ' + data.matches
+
+  return item
 }
 
 requestStatusUpdate()
