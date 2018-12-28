@@ -1,66 +1,94 @@
-const keywords = [
-  'facebook',
-  'trump',
-  'mueller',
-  'verizon',
-  'windows',
-  'google',
-  'amazon'
-]
+(function() {
+  console.clear()
 
-let entriesMatched = 0
-const matches = {}
-keywords.forEach(word => {
-  matches[word] = []
-})
+  const keywords = [
+    'facebook',
+    'trump',
+    'mueller',
+    'verizon',
+    'windows',
+    'google',
+    'amazon'
+  ]
 
-const entries = getEntries()
-entries.forEach(entry => {
-  match(entry)
-})
+  let entriesMatched = 0 // Entries matching keywords.
 
-browser.runtime.sendMessage({
-  removed: entriesMatched
-})
+  const matchData = {
+    entriesMatched: 0,
+    matches: {}
+  }
 
-function getEntries() {
-  return document.querySelectorAll('.thing')
-}
+  function prepareMatchArray() {
+    keywords.forEach(word => {
+      matchData.matches[word] = []
+    })
+  }
 
-function getEntryTitle(entry) {
-  return entry.querySelector('a.title').textContent
-}
+  function findMatches() {
+    const entries = getEntries()
+    entries.forEach(entry => {
+      match(entry)
+    })
+  }
 
-// Subreddit the entry is from
-function getEntryOrigin(entry) {
-  return entry.querySelector('a.subreddit').textContent
-}
+  function updateBadge() {
+    // Update browser_action with number of matches.
+    browser.runtime.sendMessage({
+      removed: entriesMatched,
+      entries: getMatchCount(matchData.matches)
+    })
+  }
 
-function match(entry) {
-  if (isPromoted(entry)) return
+  function getMatchCount(matches) {
+    const o = {}
+    Object.keys(matches).forEach(key => {
+      o[key] = matches[key].length
+    })
 
-  keywords.forEach(word => {
-    filter(entry, word)
-  })
-}
+    return o
+  }
 
-function isPromoted(entry) {
-  return entry.classList.contains('promoted')
-}
+  function getEntries() {
+    return document.querySelectorAll('.thing')
+  }
 
-function filter(entry, keyword) {
-  const title = getEntryTitle(entry).toLowerCase()
+  function getEntryTitle(entry) {
+    return entry.querySelector('a.title').textContent
+  }
 
-  if (title.includes(keyword.toLowerCase())) {
-    // entry.parentNote.removeChild(entry)
-     entry.style.border = '1px solid red'
-     entry.style.opacity = '0.25'
-     entry.style.display = 'none'
-     console.log(`%cRemoved ${title}`, "color: red")
-     entriesMatched++
+  // Subreddit the entry is from
+  function getEntryOrigin(entry) {
+    return entry.querySelector('a.subreddit').textContent
+  }
 
-     matches[keyword].push(entry)
-   }
-}
+  function match(entry) {
+    if (isPromoted(entry)) return
 
-console.log(matches)
+    keywords.forEach(word => {
+      filter(entry, word)
+    })
+  }
+
+  function isPromoted(entry) {
+    return entry.classList.contains('promoted')
+  }
+
+  function filter(entry, keyword) {
+    const title = getEntryTitle(entry).toLowerCase()
+
+    if (title.includes(keyword.toLowerCase())) {
+      // entry.parentNote.removeChild(entry)
+      entry.classList.add('untrumped')
+      console.log(`%cRemoved ${title}`, "color: red")
+      entriesMatched++
+
+      matchData.matches[keyword].push(entry)
+    }
+  }
+
+  prepareMatchArray()
+  findMatches()
+  updateBadge()
+
+  console.log(matchData.matches)
+})()
