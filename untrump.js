@@ -1,5 +1,8 @@
+import DOMQuery from './dom-query.js'
+
 (function() {
   console.clear()
+  console.log(DOMQuery)
 
   const keywords = [
     'facebook',
@@ -25,7 +28,7 @@
   }
 
   function findMatches() {
-    const entries = getEntries()
+    const entries = DOMQuery.getEntries()
     entries.forEach(entry => {
       match(entry)
     })
@@ -48,19 +51,6 @@
     return o
   }
 
-  function getEntries() {
-    return document.querySelectorAll('.thing')
-  }
-
-  function getEntryTitle(entry) {
-    return entry.querySelector('a.title').textContent
-  }
-
-  // Subreddit the entry is from
-  function getEntryOrigin(entry) {
-    return entry.querySelector('a.subreddit').textContent
-  }
-
   function match(entry) {
     if (isPromoted(entry)) return
 
@@ -69,12 +59,14 @@
     })
   }
 
+  
+
   function isPromoted(entry) {
     return entry.classList.contains('promoted')
   }
 
   function filter(entry, keyword) {
-    const title = getEntryTitle(entry).toLowerCase()
+    const title = DOMQuery.getEntryTitle(entry).toLowerCase()
 
     if (title.includes(keyword.toLowerCase())) {
       // entry.parentNote.removeChild(entry)
