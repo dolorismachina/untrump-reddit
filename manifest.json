@@ -17,7 +17,8 @@
         "*://*.reddit.com/controversial/*",
         "*://*.reddit.com/top/*"
       ], 
-      "js": ["untrump.js"]
+      "js": ["untrump.js"],
+      "css": ["sss.css"]
     }
   ],
 
