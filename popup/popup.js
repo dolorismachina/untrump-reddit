@@ -28,7 +28,25 @@ function createListItem(data) {
   const item = document.createElement('li')
   item.textContent = data.key + ': ' + data.matches
 
+  item.addEventListener('click', e => {
+    onClickListItem(data.key)
+  })
+
   return item
+}
+
+let key = ''
+function onClickListItem(k) {
+  key = k
+  browser.tabs.query({
+    active: true,
+    url: ["*://*.reddit.com/*"]
+  }).then(tabs => {
+    browser.tabs.sendMessage(tabs[0].id, {
+      action: "toggle",
+      keyword: key
+    })
+  })
 }
 
 requestStatusUpdate()

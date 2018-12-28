@@ -86,6 +86,19 @@
     }
   }
 
+  function handleToggle(keyword) {
+    matchData.matches[keyword].forEach(el => {
+      el.classList.toggle('untrumped')
+    })
+  }
+
+  browser.runtime.onMessage.addListener(message => {
+    switch (message.action) {
+      case 'toggle':
+        handleToggle(message.keyword)
+    }
+  })
+
   prepareMatchArray()
   findMatches()
   updateBadge()
