@@ -1,3 +1,4 @@
+
 let matches = {}
 browser.runtime.onMessage.addListener(onMessage)
 
@@ -5,7 +6,8 @@ function onMessage(message, sender, respond) {
   if (message.action && message.action === 'status') {
     handleStatusUpdate(message, sender, respond)
   }
-  else {
+  else if (message.action && message.action === 'newmatches') {
+    console.log('s', message)
     handleNewMatches(message, sender, respond)
   }
 }
