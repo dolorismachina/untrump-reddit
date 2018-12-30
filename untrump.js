@@ -2,23 +2,35 @@ import DOMQuery from './dom-query.js'
 
 (function() {
   console.clear()
-  console.log(DOMQuery)
 
-  const keywords = [
-    'facebook',
-    'trump',
-    'mueller',
-    'verizon',
-    'windows',
-    'google',
-    'amazon'
-  ]
+  let keywords = []
+
+  // Get keywords from storage.local
+  // and run filter if success.
+  function retrieveKeywords() {
+    browser.runtime.sendMessage({
+      action: 'keywords'
+    })
+    .then(
+      res => runFilter(res), 
+      err => console.log(err)
+    )
+  }
 
   let entriesMatched = 0 // Entries matching keywords.
 
   const matchData = {
     entriesMatched: 0,
     matches: {}
+  }
+
+  function runFilter(words) {
+    keywords = words || []
+    console.log(keywords)
+
+    prepareMatchArray()
+    findMatches()
+    updateBadge()
   }
 
   function prepareMatchArray() {
@@ -40,7 +52,8 @@ import DOMQuery from './dom-query.js'
       action: 'newmatches',
       removed: entriesMatched,
       entries: getMatchCount(matchData.matches)
-    })
+    }).then(res => console.log(res), 
+            err => console.log(err))
   }
 
   function getMatchCount(matches) {
@@ -92,9 +105,8 @@ import DOMQuery from './dom-query.js'
     }
   })
 
-  prepareMatchArray()
-  findMatches()
-  updateBadge()
+  retrieveKeywords()
+
 
   console.log(matchData.matches)
 })()
