@@ -1,3 +1,7 @@
+document.querySelector('button').addEventListener('click', e => {
+  browser.runtime.openOptionsPage()
+})
+
 function requestStatusUpdate() {
   const options = {
     action: 'status'
