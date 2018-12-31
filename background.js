@@ -19,10 +19,12 @@ browser.storage.local.set({
 let matches = {}
 browser.runtime.onMessage.addListener(onMessage)
 
+
 function handleKeywords() {
   return queryStorage()
     .then(processQuery)
 }
+
 
 function processQuery(result) {
   if (result.keywords) {
@@ -33,9 +35,11 @@ function processQuery(result) {
   }
 }
 
+
 function queryStorage() {
   return browser.storage.local.get('keywords')
 }
+
 
 function onMessage(message, sender, respond) {
   if (message.action && message.action === 'status') {
@@ -50,16 +54,19 @@ function onMessage(message, sender, respond) {
   }
 }
 
+
 function handleStatusUpdate(message, sender, respond) {
   respond({
     matches: matches
   })
 }
 
+
 function handleNewMatches(message, sender, respond) {
   matches = message.entries
   updateBadgeText(message.removed)
 }
+
 
 function updateBadgeText(entriesRemoved) {
   browser.browserAction.setBadgeText({text: entriesRemoved.toString()})

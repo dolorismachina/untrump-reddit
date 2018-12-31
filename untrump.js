@@ -24,6 +24,7 @@ import DOMQuery from './dom-query.js'
     matches: {}
   }
 
+  
   function runFilter(words) {
     keywords = words || []
     console.log(keywords)
@@ -33,11 +34,13 @@ import DOMQuery from './dom-query.js'
     updateBadge()
   }
 
+
   function prepareMatchArray() {
     keywords.forEach(word => {
       matchData.matches[word] = []
     })
   }
+
 
   function findMatches() {
     const entries = DOMQuery.getEntries()
@@ -56,6 +59,7 @@ import DOMQuery from './dom-query.js'
             err => console.log(err))
   }
 
+
   function getMatchCount(matches) {
     const o = {}
     Object.keys(matches).forEach(key => {
@@ -65,6 +69,7 @@ import DOMQuery from './dom-query.js'
     return o
   }
 
+
   function match(entry) {
     if (isPromoted(entry)) return
 
@@ -72,12 +77,12 @@ import DOMQuery from './dom-query.js'
       filter(entry, word)
     })
   }
-
   
 
   function isPromoted(entry) {
     return entry.classList.contains('promoted')
   }
+
 
   function filter(entry, keyword) {
     const title = DOMQuery.getEntryTitle(entry).toLowerCase()
@@ -91,6 +96,7 @@ import DOMQuery from './dom-query.js'
       matchData.matches[keyword].push(entry)
     }
   }
+
 
   function handleToggle(keyword) {
     matchData.matches[keyword].forEach(el => {
