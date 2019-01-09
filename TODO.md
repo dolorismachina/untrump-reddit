@@ -1,14 +1,14 @@
-1. ~~Get list of all posts.~~ *[DONE]*
-2. ~~Check list of keywords and compare.~~ *[DONE]*
-3. ~~Remove matched posts.~~ *[?DONE]*
-4. ~~Display how many posts are hidden in the icon.~~ *[DONE]*
+1. *[DONE]* ~~Get list of all posts.~~ 
+2. *[DONE]* ~~Check list of keywords and compare.~~ 
+3. *[?DONE]* ~~Remove matched posts.~~ 
+4. *[DONE]* ~~Display how many posts are hidden in the icon.~~ 
 5. Toggle hiding on and off for all keywords.
-7. ~~Track how many entries hidden for each keyword.~~ *[DONE]*
+7. *[DONE]* ~~Track how many entries hidden for each keyword.~~ 
     1. Only display matched keywords.
 8. Filter by source. ie. BBC, Independent etc.
-9. ~~Use Reddit API to hide post server-side.~~ *[ABANDONED]*
-10. User defined keywords. *[IN PROGRESS]*
-    1. ~Get words from storage.~ *[DONE]*
+9. *[ABANDONED]* ~~Use Reddit API to hide post server-side.~~ 
+10. *[IN PROGRESS]* User defined keywords. 
+    1. *[DONE]* ~Get words from storage.~ 
     2. Update / add words into storage.
-11. ~~Toggle hiding and highlighting posts.~~ *[DONE]*
+11. *[DONE]* ~~Toggle hiding and highlighting posts.~~ 
 12. Add "Hide All" and "Hide" buttons for each keyword.
