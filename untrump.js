@@ -51,11 +51,14 @@ import DOMQuery from './dom-query.js'
 
   function updateBadge() {
     // Update browser_action with number of matches.
-    browser.runtime.sendMessage({
+    const options = {
       action: 'newmatches',
       removed: entriesMatched,
       entries: getMatchCount(matchData.matches)
-    }).then(res => console.log(res), 
+    }
+    
+    browser.runtime.sendMessage(options)
+      .then(res => console.log(res), 
             err => console.log(err))
   }
 
