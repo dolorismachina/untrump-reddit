@@ -8,14 +8,6 @@ const defaultKeywords = [
   'amazon'
 ]
 
-// Populate storage with mock words.
-// Remove before publishing.
-browser.storage.local.set({
-  keywords: [
-    'trump', 
-    'facebook'
-  ]})
-
 let matches = {}
 browser.runtime.onMessage.addListener(onMessage)
 
