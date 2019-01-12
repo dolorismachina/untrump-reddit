@@ -14,10 +14,19 @@
     browser.storage.local.set({
       keywords: words
     })
-    .then(res => console.log(res),
-          err => console.error(err))
+    .then(onSaveToStorage, onSaveToStorageError)
   }
   
+
+  function onSaveToStorage(response) {
+    console.log('Words saved to storage.')
+  }
+
+
+  function onSaveToStorageError(error) {
+    console.error(error)
+  }
+
   
   async function getFromStorage() {
     const words = await browser.storage.local.get('keywords')
