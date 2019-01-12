@@ -1,14 +1,8 @@
 const button = document.querySelector('button')
 button.addEventListener('click', saveToStorage)
 
-browser.storage.local.get('keywords')
-.then(res => {
-    console.log(res)
-    textArea.value = ''
-    res.keywords.forEach(w => textArea.value += w + '\n')
-  },
-      err => console.error(err))
 
+getFromStorage()
 
 function saveToStorage(e) {
   const words = processInput()
@@ -19,6 +13,18 @@ function saveToStorage(e) {
   .then(res => console.log(res),
         err => console.error(err))
 }
+
+
+function getFromStorage() {
+  browser.storage.local.get('keywords')
+  .then(res => {
+      console.log(res)
+      textArea.value = ''
+      res.keywords.forEach(w => textArea.value += w + '\n')
+    },
+        err => console.error(err))
+}
+
 
 function processInput() {
   const textArea = document.querySelector('textarea')
