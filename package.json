@@ -1,0 +1,26 @@
+{
+  "name": "reddit-filter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolorismachina/untrump-reddit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dolorismachina/untrump-reddit/issues"
+  },
+  "homepage": "https://github.com/dolorismachina/untrump-reddit#readme",
+  "dependencies": {
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  }
+}
