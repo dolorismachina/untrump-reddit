@@ -20,11 +20,27 @@
 
   function onSaveToStorage(response) {
     console.log('Words saved to storage.')
+
+    browser.tabs.query({
+      url: '*://*.reddit.com/*'
+    })
+      .then(messageTabs)
+      .catch(err => console.error(err))
   }
 
 
   function onSaveToStorageError(error) {
     console.error(error)
+  }
+
+
+  function messageTabs(tabs) {
+    console.log(tabs)
+    for (let tab of tabs) {
+      browser.tabs.sendMessage(tab.id, {
+        action: 'wordsupdated'
+      })
+    }
   }
 
   

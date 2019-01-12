@@ -111,6 +111,12 @@ import DOMQuery from './dom-query.js'
     switch (message.action) {
       case 'toggle':
         handleToggle(message.keyword)
+        break
+      
+      case 'wordsupdated':
+        console.log('Receiving updated words')
+        retrieveKeywords()
+        break
     }
   })
 
