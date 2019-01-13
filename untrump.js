@@ -26,6 +26,7 @@ import DOMQuery from './dom-query.js'
 
   
   function runFilter(words) {
+    entriesMatched = 0
     keywords = words || []
     console.log(keywords)
 
@@ -107,6 +108,18 @@ import DOMQuery from './dom-query.js'
     })
   }
 
+  
+  function reset() {
+    Object.keys(matchData.matches).forEach(key => {
+      matchData.matches[key].forEach(listing => {
+        listing.classList.remove('untrumped')
+      })
+    })
+
+    retrieveKeywords()
+  }
+
+  
   browser.runtime.onMessage.addListener(message => {
     switch (message.action) {
       case 'toggle':
@@ -115,11 +128,12 @@ import DOMQuery from './dom-query.js'
       
       case 'wordsupdated':
         console.log('Receiving updated words')
-        retrieveKeywords()
+        reset()
         break
     }
   })
 
+  
   retrieveKeywords()
 
 
