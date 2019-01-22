@@ -2,6 +2,7 @@ document.querySelector('button').addEventListener('click', e => {
   browser.runtime.openOptionsPage()
 })
 
+
 function requestStatusUpdate() {
   const options = {
     action: 'status'
@@ -10,11 +11,13 @@ function requestStatusUpdate() {
   .then(update)
 }
 
+
 function update(data) {
   console.log('popup')
   console.log(data)
   createList(data.matches)
 }
+
 
 // Populate UL with list of keywords 
 // and number of matched listings.
@@ -27,17 +30,28 @@ function createList(matches) {
   })
 }
 
+
 function createListItem(data) {
   console.log(data)
   const item = document.createElement('li')
-  item.textContent = data.key + ': ' + data.matches
+  const left = document.createElement('div')
+  const right = document.createElement('div')
 
+  item.classList.add('popup-list-item')
+  left.textContent = data.key
+  right.textContent = data.matches
+
+  item.appendChild(left)
+  item.appendChild(right)
+  
   item.addEventListener('click', e => {
+    item.classList.toggle('disabled')
     onClickListItem(data.key)
   })
 
   return item
 }
+
 
 let key = ''
 function onClickListItem(k) {
