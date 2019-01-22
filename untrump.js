@@ -8,6 +8,7 @@ import DOMQuery from './dom-query.js'
   // Get keywords from storage.local
   // and run filter if success.
   function retrieveKeywords() {
+    entriesMatched = 0
     browser.runtime.sendMessage({
       action: 'keywords'
     })
@@ -111,6 +112,11 @@ import DOMQuery from './dom-query.js'
     switch (message.action) {
       case 'toggle':
         handleToggle(message.keyword)
+        break
+      
+      case 'refresh':
+        retrieveKeywords()
+        break
     }
   })
 

@@ -14,7 +14,20 @@
     browser.storage.local.set({
       keywords: words
     })
-    .then(res => console.log(res),
+    .then(res => {
+      console.log('Saved to storage')
+
+      browser.tabs.query({
+        url: ["*://*.reddit.com/*"]
+      }).then(tabs => {
+        console.log(tabs)
+        tabs.forEach(tab => {
+          browser.tabs.sendMessage(tab.id, {
+            action: "refresh",
+          }).then(res => console.log(res), err => console.error(err))
+        })
+      })
+    },
           err => console.error(err))
   }
   
