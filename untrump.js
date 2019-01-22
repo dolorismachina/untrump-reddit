@@ -102,6 +102,20 @@ import DOMQuery from './dom-query.js'
   }
 
 
+  function resetListings() {
+    console.log('reset')
+    const keys = Object.keys(matchData.matches)
+    keys.forEach(key => {
+      console.log(key)
+      matchData.matches[key].forEach(match => {
+        match.classList.toggle('untrumped')
+      })
+    }) 
+
+    matchData.matches = {}
+  }
+
+
   function handleToggle(keyword) {
     matchData.matches[keyword].forEach(el => {
       el.classList.toggle('untrumped')
@@ -115,6 +129,7 @@ import DOMQuery from './dom-query.js'
         break
       
       case 'refresh':
+        resetListings()
         retrieveKeywords()
         break
     }
