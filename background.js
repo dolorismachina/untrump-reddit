@@ -33,6 +33,18 @@ function queryStorage() {
 }
 
 
+// Init extension with a few default words
+browser.runtime.onInstalled.addListener(details => {
+  const filters = [
+    'trump',
+    'facebook',
+    'google',
+  ]
+
+  browser.storage.local.set({keywords: filters})  
+})
+
+
 function onMessage(message, sender, respond) {
   if (message.action && message.action === 'status') {
     handleStatusUpdate(message, sender, respond)
