@@ -1,0 +1,14 @@
+textarea {
+  resize: none;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+button {
+  width: 5rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-left: auto;
+}
