@@ -13,6 +13,8 @@ export default class Filter {
     await this.getFilters()
       .then(this.processFilters.bind(this), err => console.log(err))
       .then(this.updateState.bind(this))
+      
+    this.attachTagsToTitles()
   }
 
 
@@ -90,7 +92,26 @@ export default class Filter {
       .then(res => console.log(res), 
             err => console.log(err))
   }
+
   
+  attachTagsToTitles() {
+    const filters = Object.keys(this.matches)
+    filters.forEach(this.attachTag.bind(this))
+  }
+
+
+  attachTag(key) {
+    this.matches[key].forEach(listing => {
+      const titleElement = listing.querySelector('p.title')
+      const flairElement = titleElement.querySelector('.linkflairlabel')
+
+      const span = document.createElement('span')
+      span.classList.add('linkflairlabel', 'trumptag')
+      span.textContent = key.toUpperCase()
+      titleElement.parentNode.insertBefore(span, titleElement)
+    })
+  }
+
 
   // Count how many listings are matched for each filter.
   countMatchesByWord() {
