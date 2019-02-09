@@ -60,10 +60,13 @@ function onClickListItem(k) {
     active: true,
     url: ["*://*.reddit.com/*"]
   }).then(tabs => {
-    browser.tabs.sendMessage(tabs[0].id, {
-      action: "toggle",
-      keyword: key
+    tabs.forEach(tab => {
+      browser.tabs.sendMessage(tab.id, {
+        action: "toggle",
+        keyword: key
+      })
     })
+    
   })
 }
 
