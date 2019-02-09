@@ -1,5 +1,7 @@
-.untrumped {
-  opacity: 0.25;
+.untrumped a.title,
+.untrumped p.tagline,
+.untrumped ul.flat-list {
+  opacity: 0.1;
 }
 
 
