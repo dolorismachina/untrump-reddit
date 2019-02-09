@@ -18,7 +18,7 @@
         "*://*.reddit.com/top/*"
       ], 
       "js": ["bundle.js"],
-      "css": ["sss.css"]
+      "css": ["filter.css"]
     }
   ],
 
