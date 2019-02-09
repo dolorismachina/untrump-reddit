@@ -4,6 +4,10 @@
   opacity: 0.05;
 }
 
+.untrumped a.title:hover {
+  transition: opacity 0.1s linear;
+  opacity: 1;
+}
 
 /* Hide button */
 .untrumped ul.flat-list li:nth-child(4) {
