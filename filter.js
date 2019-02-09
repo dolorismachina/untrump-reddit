@@ -47,7 +47,6 @@ export default class Filter {
       })
     })
 
-    console.log('ende')
     return true
   }
 
