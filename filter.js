@@ -96,19 +96,23 @@ export default class Filter {
 
   
   attachTagsToTitles() {
-    console.log('Attach tags')
-    Object.keys(this.matches).forEach(key => {
-      this.matches[key].forEach(listing => {
-        const titleElement = listing.querySelector('p.title')
-        const flairElement = titleElement.querySelector('.linkflairlabel')
+    const filters = Object.keys(this.matches)
+    filters.forEach(this.attachTag.bind(this))
+  }
 
-        const span = document.createElement('span')
-        span.classList.add('linkflairlabel', 'trumptag')
-        span.textContent = key
-        titleElement.insertBefore(span, flairElement)
-      })
+
+  attachTag(key) {
+    this.matches[key].forEach(listing => {
+      const titleElement = listing.querySelector('p.title')
+      const flairElement = titleElement.querySelector('.linkflairlabel')
+
+      const span = document.createElement('span')
+      span.classList.add('linkflairlabel', 'trumptag')
+      span.textContent = key.toUpperCase()
+      titleElement.parentNode.insertBefore(span, titleElement)
     })
   }
+
 
   // Count how many listings are matched for each filter.
   countMatchesByWord() {
