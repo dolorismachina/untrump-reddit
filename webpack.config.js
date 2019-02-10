@@ -1,9 +1,12 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    untrump: './src/index.js',
+    background: './src/background.js'
+  },
   output: {
-    filename: 'untrump.js',
+    filename: '[name].js',
     path: __dirname + '/dist/'
   },
   mode: 'development',
