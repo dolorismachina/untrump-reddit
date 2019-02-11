@@ -7,4 +7,5 @@ module.exports = {
     path: __dirname
   },
   mode: 'development',
+  devtool: 'none'
 }
