@@ -17,8 +17,8 @@
         "*://*.reddit.com/controversial/*",
         "*://*.reddit.com/top/*"
       ], 
-      "js": ["bundle.js"],
-      "css": ["filter.css"]
+      "js": ["./dist/untrump.js"],
+      "css": ["/dist/filter.css"]
     }
   ],
 
@@ -32,7 +32,7 @@
   },
   
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["/dist/background.js"]
   },
 
   "options_ui": {

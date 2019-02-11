@@ -1,10 +1,13 @@
 const path = require('path')
 
 module.exports = {
-  entry: './untrump.js',
+  entry: {
+    untrump: './src/index.js',
+    background: './src/background.js'
+  },
   output: {
-    filename: 'bundle.js',
-    path: __dirname
+    filename: '[name].js',
+    path: __dirname + '/dist/'
   },
   mode: 'development',
   devtool: 'none'
