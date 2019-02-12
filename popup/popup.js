@@ -2,6 +2,17 @@ document.querySelector('button').addEventListener('click', e => {
   browser.runtime.openOptionsPage()
 })
 
+document.querySelector('#add-word').addEventListener('click', e => {
+  const textBox = document.querySelector('input')
+  if (textBox.value === '') 
+    return
+
+  browser.runtime.sendMessage({
+    action: 'popup-new-filter',
+    content: textBox.value
+  })
+})
+
 
 function requestStatusUpdate() {
   const options = {
