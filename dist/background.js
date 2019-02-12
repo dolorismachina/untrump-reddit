@@ -158,17 +158,23 @@ function onMessage(message, sender, respond) {
     return handleKeywords()
   }
   else if (message.action === 'popup-new-filter') {
-    browser.storage.local.get('keywords')
-    .then(res => {
-      if (res.keywords.includes(message.content))
-        return
-
-      res.keywords.push(message.content)
-
-      browser.storage.local.set({keywords: res.keywords})
-      .then(res => console.log('Storage updated'), err => console.error(err))
-    })
+    handlePopupNewFilter(message.content)
   }
+}
+
+function handlePopupNewFilter(content) {
+  browser.storage.local.get('keywords')
+  .then(res => {
+    if (res.keywords.includes(content))
+      return
+
+    res.keywords.push(content)
+
+    browser.storage.local.set({
+      keywords: res.keywords
+    })
+    .then(res => console.log('Storage updated'), err => console.error(err))
+  })
 }
 
 
