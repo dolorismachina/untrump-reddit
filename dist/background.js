@@ -141,14 +141,20 @@ browser.runtime.onInstalled.addListener(details => {
 
 
 function onMessage(message, sender, respond) {
-  if (message.action && message.action === 'status') {
+  if (!message.action) {
+    console.error('Received message with no action. I don\' know what to do with it')
+    console.log(message)
+    return
+  }
+
+  if (message.action === 'status') {
     handleStatusUpdate(message, sender, respond)
   }
-  else if (message.action && message.action === 'newmatches') {
+  else if (message.action === 'newmatches') {
     console.log('s', message)
     handleNewMatches(message, sender, respond)
   }
-  else if (message.action && message.action === 'keywords') {
+  else if (message.action === 'keywords') {
     return handleKeywords()
   }
 }
