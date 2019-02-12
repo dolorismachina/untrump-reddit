@@ -62,6 +62,18 @@ function onMessage(message, sender, respond) {
   else if (message.action === 'keywords') {
     return handleKeywords()
   }
+  else if (message.action === 'popup-new-filter') {
+    browser.storage.local.get('keywords')
+    .then(res => {
+      if (res.keywords.includes(message.content))
+        return
+
+      res.keywords.push(message.content)
+
+      browser.storage.local.set({keywords: res.keywords})
+      .then(res => console.log('Storage updated'), err => console.error(err))
+    })
+  }
 }
 
 
