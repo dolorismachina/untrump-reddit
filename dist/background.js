@@ -173,7 +173,18 @@ function handlePopupNewFilter(content) {
     browser.storage.local.set({
       keywords: res.keywords
     })
-    .then(res => console.log('Storage updated'), err => console.error(err))
+    .then(res => {
+
+      browser.tabs.query({
+        url: ["*://*.reddit.com/*"]
+      }).then(tabs => {
+        tabs.forEach(tab => {
+          browser.tabs.sendMessage(tab.id, {
+            action: "refresh",
+          }).then(res => console.log(res), err => console.error(err))
+        })
+      })
+  }, err => console.error(err))
   })
 }
 
