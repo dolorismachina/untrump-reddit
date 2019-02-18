@@ -102,6 +102,9 @@ export default class Filter {
 
   attachTag(key) {
     this.matches[key].forEach(listing => {
+      if (listing.querySelector('.trumptag'))
+        return
+        
       const titleElement = listing.querySelector('p.title')
       const flairElement = titleElement.querySelector('.linkflairlabel')
 
