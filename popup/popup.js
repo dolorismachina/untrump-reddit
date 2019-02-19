@@ -13,10 +13,8 @@ document.querySelector('#add-word').addEventListener('click', e => {
 
   const message = {
     filter: textBox.value,
-    options: {
-      autohide: autohideCheckBox.checked,
-      emphasize: emphasizeCheckBox.checked
-    }
+    autohide: autohideCheckBox.checked,
+    emphasize: emphasizeCheckBox.checked
   }
 
   browser.runtime.sendMessage({

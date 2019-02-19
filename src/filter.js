@@ -63,7 +63,10 @@ export default class Filter {
 
     if (title.includes(filter.filter.toLowerCase())) {
       console.log(`%cRemoved ${title}`, "color: red")
-      this.applyFilter(listing)
+      this.applyFilter(listing, {
+        autohide: filter.autohide, 
+        emphasize: filter.emphasize
+      })
       this.matchCount++
       if (!this.matches[filter.filter]) {
         this.matches[filter.filter] = []
@@ -74,7 +77,19 @@ export default class Filter {
   }
 
 
-  applyFilter(targetListing) {
+  applyFilter(targetListing, options) {
+    if (options.autohide) {
+      targetListing.classList.add('untrumped-hidden')
+      
+      return
+    }
+
+    if (options.emphasize) {
+      targetListing.classList.add('untrumped-emphasized')
+
+      return
+    }
+
     targetListing.classList.add('untrumped')
   }
 
