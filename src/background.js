@@ -36,9 +36,21 @@ function queryStorage() {
 // Init extension with a few default words
 browser.runtime.onInstalled.addListener(details => {
   const filters = [
-    'trump',
-    'facebook',
-    'google',
+    {
+      filter: 'trump',
+      autohide: false,
+      emphasize: false
+    },
+    {
+      filter: 'amazon',
+      autohide: false,
+      emphasize: false
+    },
+    {
+      filter: 'facebook',
+      autohide: false,
+      emphasize: false
+    }  
   ]
 
   browser.storage.local.set({keywords: filters})  
@@ -70,10 +82,10 @@ function onMessage(message, sender, respond) {
 function handlePopupNewFilter(content) {
   browser.storage.local.get('keywords')
   .then(res => {
-    if (res.keywords.includes(content.filter))
+    if (res.keywords.includes(content))
       return
 
-    res.keywords.push(content.filter)
+    res.keywords.push(content)
 
     browser.storage.local.set({
       keywords: res.keywords

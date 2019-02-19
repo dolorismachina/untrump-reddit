@@ -55,21 +55,21 @@ export default class Filter {
 
   // Check if listing's title contains 
   // user-defined filter word.
-  compare(listing, word) {
+  compare(listing, filter) {
     if (listing.classList.contains('promoted')) 
       return
 
     const title = DOMQuery.getEntryTitle(listing).toLowerCase()
 
-    if (title.includes(word.toLowerCase())) {
+    if (title.includes(filter.filter.toLowerCase())) {
       console.log(`%cRemoved ${title}`, "color: red")
       this.applyFilter(listing)
       this.matchCount++
-      if (!this.matches[word]) {
-        this.matches[word] = []
+      if (!this.matches[filter.filter]) {
+        this.matches[filter.filter] = []
       }
 
-      this.matches[word].push(listing)
+      this.matches[filter.filter].push(listing)
     }
   }
 
