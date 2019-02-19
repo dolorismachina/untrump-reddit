@@ -1,3 +1,7 @@
+const autohideCheckBox = document.querySelector('#autohide')
+const emphasizeCheckBox = document.querySelector('#emphasize')
+
+
 document.querySelector('button').addEventListener('click', e => {
   browser.runtime.openOptionsPage()
 })
@@ -7,9 +11,17 @@ document.querySelector('#add-word').addEventListener('click', e => {
   if (textBox.value === '') 
     return
 
+  const message = {
+    filter: textBox.value,
+    options: {
+      autohide: autohideCheckBox.checked,
+      emphasize: emphasizeCheckBox.checked
+    }
+  }
+
   browser.runtime.sendMessage({
     action: 'popup-new-filter',
-    content: textBox.value
+    content: message
   })
 })
 

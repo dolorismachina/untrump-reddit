@@ -70,10 +70,10 @@ function onMessage(message, sender, respond) {
 function handlePopupNewFilter(content) {
   browser.storage.local.get('keywords')
   .then(res => {
-    if (res.keywords.includes(content))
+    if (res.keywords.includes(content.filter))
       return
 
-    res.keywords.push(content)
+    res.keywords.push(content.filter)
 
     browser.storage.local.set({
       keywords: res.keywords
