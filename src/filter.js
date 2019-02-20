@@ -96,13 +96,6 @@ export default class Filter {
   }
 
   
-  // Emulate mouse click on the hide link of a listing.
-  hideListing(targetListing) {
-    const hide = targetListing.querySelector('a[data-event-action=hide]')
-    hide.click()
-  }
-
-
   // Send filter data to background script
   // to update the badge and create a popup menu.
   updateState() {
@@ -156,7 +149,7 @@ export default class Filter {
   toggle(word) {
     this.matches[word]
       .forEach(el => {
-        el.classList.toggle('untrumped')
+        el.toggle()
       })
   }
 }
