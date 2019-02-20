@@ -7,6 +7,11 @@ document.querySelector('button').addEventListener('click', e => {
 })
 
 document.querySelector('#add-word').addEventListener('click', e => {
+  addNewFilter()
+})
+
+
+function addNewFilter() {
   const textBox = document.querySelector('input')
   if (textBox.value === '') 
     return
@@ -21,7 +26,7 @@ document.querySelector('#add-word').addEventListener('click', e => {
     action: 'popup-new-filter',
     content: message
   })
-})
+}
 
 
 function requestStatusUpdate() {
