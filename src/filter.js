@@ -66,17 +66,17 @@ export default class Filter {
     console.log(`%cRemoved ${listing.titleString}`, "color: red")
     listing.applyFilter(filter)
 
-    this.matchCount++
-    if (!this.matches[filter.filter]) {
-      this.matches[filter.filter] = []
-    }
-
-    this.matches[filter.filter].push(listing)
+    this.registerMatch(filter.filter, listing)
   }
 
 
+  registerMatch(key, listing) {
+    this.matchCount++
+    if (!this.matches[key]) {
+      this.matches[key] = []
     }
 
+    this.matches[key].push(listing)
 
   }
 
