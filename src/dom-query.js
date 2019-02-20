@@ -1,6 +1,14 @@
+import Listing from './listing'
+
 export default {
   getEntries() {
-    return document.querySelectorAll('.thing')
+    const entries = document.querySelectorAll('.thing')
+    const arr = []
+    entries.forEach(e => {
+      arr.push(new Listing(e))
+    })
+
+    return arr
   },
 
   getEntryTitle(entry) {

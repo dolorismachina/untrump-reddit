@@ -1,4 +1,5 @@
 import DOMQuery from './dom-query'
+import Listing from './listing'
 
 
 export default class Filter {
@@ -56,24 +57,25 @@ export default class Filter {
   // Check if listing's title contains 
   // user-defined filter word.
   compare(listing, filter) {
-    if (listing.classList.contains('promoted')) 
+    if (listing.isPromoted()) 
       return
+      
+    if (!listing.matches(filter.filter))
+      return
+    
+    console.log(`%cRemoved ${listing.titleString}`, "color: red")
+    listing.applyFilter(filter)
 
-    const title = DOMQuery.getEntryTitle(listing).toLowerCase()
-
-    if (title.includes(filter.filter.toLowerCase())) {
-      console.log(`%cRemoved ${title}`, "color: red")
-      this.applyFilter(listing, {
-        autohide: filter.autohide, 
-        emphasize: filter.emphasize
-      })
-      this.matchCount++
-      if (!this.matches[filter.filter]) {
-        this.matches[filter.filter] = []
-      }
-
-      this.matches[filter.filter].push(listing)
+    this.applyFilter(listing, {
+      autohide: filter.autohide, 
+      emphasize: filter.emphasize
+    })
+    this.matchCount++
+    if (!this.matches[filter.filter]) {
+      this.matches[filter.filter] = []
     }
+
+    this.matches[filter.filter].push(listing)
   }
 
 
