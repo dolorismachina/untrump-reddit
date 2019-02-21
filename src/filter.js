@@ -104,16 +104,7 @@ export default class Filter {
 
   attachTag(key) {
     this.matches[key].forEach(listing => {
-      if (listing.querySelector('.trumptag'))
-        return
-        
-      const titleElement = listing.querySelector('p.title')
-      const flairElement = titleElement.querySelector('.linkflairlabel')
-
-      const span = document.createElement('span')
-      span.classList.add('linkflairlabel', 'trumptag')
-      span.textContent = key.toUpperCase()
-      titleElement.parentNode.insertBefore(span, titleElement)
+      listing.attachTag(key)
     })
   }
 

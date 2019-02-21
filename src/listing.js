@@ -52,4 +52,16 @@ export default class Listing {
   reset() {
     this.element.classList.remove('untrumped')
   }
+
+  attachTag(tag) {
+    if (this.element.querySelector('.trumptag'))
+        return
+        
+    const titleElement = this.element.querySelector('p.title')
+
+    const span = document.createElement('span')
+    span.classList.add('linkflairlabel', 'trumptag')
+    span.textContent = tag.toUpperCase()
+    titleElement.parentNode.insertBefore(span, titleElement)
+  }
 }
