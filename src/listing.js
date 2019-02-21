@@ -13,13 +13,16 @@ export default class Listing {
     this.titleString = this.titleElement.textContent
   }
 
+  
   matches(str) {
     return this.titleString.toLowerCase().includes(str.toLowerCase())
   }
 
+
   isPromoted() {
     return this.element.classList.contains('promoted')
   }
+
 
   applyFilter(filter) {
     console.log('Apply filter')
@@ -40,18 +43,22 @@ export default class Listing {
     this.element.classList.add('untrumped')
   }
 
+
   hide() {
     const hide = this.element.querySelector('a[data-event-action=hide]')
     hide.click()
   }
 
+
   toggle() {
     this.element.classList.toggle('untrumped')
   }
 
+
   reset() {
     this.element.classList.remove('untrumped')
   }
+
 
   attachTag(tag) {
     if (this.element.querySelector('.trumptag'))
