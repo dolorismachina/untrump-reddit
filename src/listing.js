@@ -48,4 +48,8 @@ export default class Listing {
   toggle() {
     this.element.classList.toggle('untrumped')
   }
+
+  reset() {
+    this.element.classList.remove('untrumped')
+  }
 }

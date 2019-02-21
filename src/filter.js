@@ -24,7 +24,7 @@ export default class Filter {
   reset() {
     Object.keys(this.matches).forEach(key => {
       this.matches[key].forEach(match => {
-        match.classList.remove('untrumped')
+        match.reset()
       })
     }) 
 
