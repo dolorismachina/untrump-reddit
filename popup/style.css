@@ -7,25 +7,37 @@ body {
   font-size: 1.3rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Helvetica, sans-serif;
   max-height: 15rem;
-  width: 100%;
+  color: #3E5100;
 }
 
+h1 {
+  font-size: 24px;
+  padding-left: 3%;
+}
+
+h2 {
+  font-size: 20px;
+  padding-left: 3%;
+  margin-top: 0.5rem;
+}
 .header {
-  background: cornflowerblue;
+  background: #B3CB65;
+  color: #3E5100;
   text-align: center;
   padding: 3%;
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
   background: none;
   border: none;
   cursor: pointer;
-  right: 2%;
-  position: absolute;
 }
 
 .info {
   font-size: 70%;
+  padding: 0 3%;
 }
 
 .disabled {
@@ -46,4 +58,50 @@ li {
   display: flex; 
   justify-content: space-between;
   background: rgb(255, 251, 218);
+}
+
+/* 
+Add filter section
+*/
+
+.add-filter {
+  borderbottom: 1px solid #b3cb659f;
+  padding-bottom: 1rem;
+  padding: 0 3% 3% 3%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-bottom: 5%;
+}
+
+#checkboxes {
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  font-size: 70%;
+}
+
+#add-word {
+  color: red;
+  margin-left: auto;
+  display: none;
+}
+
+.checkbox {
+  display: flex;
+  flex: 1 0 40%;
+  align-items: baseline;
+}
+
+.checkbox label {
+  margin-right: 0.3rem;
+}
+
+input[type="text"] {
+  border: 1px solid rgb(177, 175, 175);
+  padding: 0.5rem;
+  padding-bottom: 0.3rem;
+  margin: 0.2rem auto;
+  width: 85%;
+  display: block;
 }

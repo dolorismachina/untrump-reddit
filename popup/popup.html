@@ -9,24 +9,31 @@
 
 <body>
   <div class="header">
-    Untrump
-
+   <h1>Untrump</h1>
     <button>
       <img src="icon.png" width="24" height="24">
     </button>
   </div>
 
+  <h2>New filter</h2>
   <div class="add-filter">
     <input id="add-filter-text" type="text" placeholder="New filter eg. &lsquo;trump&rsquo;"/>
     
-    <label for="autohide">Autohide</label>
-    <input type="checkbox" id="autohide" />
+    <div id="checkboxes">
+      <div class="checkbox">
+        <label for="autohide">Autohide</label>
+        <input type="checkbox" id="autohide" />
+      </div>
 
-    <label for="emphasize">Emphasize</label>
-    <input type="checkbox" id="emphasize" />
+      <div class="checkbox">
+        <label for="emphasize">Emphasize</label>
+        <input type="checkbox" id="emphasize" />
+      </div>
+    </div>
     
   </div>
 
+  <h2>Active filters</h2>
   <div class="info">
       Click on a word to enable/disable filter
   </div>
