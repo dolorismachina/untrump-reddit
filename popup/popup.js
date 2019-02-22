@@ -2,7 +2,7 @@ const autohideCheckBox = document.querySelector('#autohide')
 const emphasizeCheckBox = document.querySelector('#emphasize')
 const addFilterText = document.querySelector('#add-filter-text')
 addFilterText.addEventListener('keyup', e => {
-  if (!e.key === 'Enter') 
+  if (e.key !== 'Enter') 
     return
 
   addNewFilter()
