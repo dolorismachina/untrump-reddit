@@ -79,29 +79,24 @@ function onMessage(message, sender, respond) {
   }
 }
 
-function handlePopupNewFilter(content) {
-  browser.storage.local.get('keywords')
-  .then(res => {
-    if (res.keywords.includes(content))
-      return
+async function handlePopupNewFilter(content) {
+  const filters = await browser.storage.local.get('keywords')
+  if (filters.keywords.includes(content))
+    return
 
-    res.keywords.push(content)
+  filters.keywords.push(content)
 
-    browser.storage.local.set({
-      keywords: res.keywords
-    })
-    .then(res => {
+  await browser.storage.local.set({
+    keywords: filters.keywords
+  })
 
-      browser.tabs.query({
-        url: ["*://*.reddit.com/*"]
-      }).then(tabs => {
-        tabs.forEach(tab => {
-          browser.tabs.sendMessage(tab.id, {
-            action: "refresh",
-          }).then(res => console.log(res), err => console.error(err))
-        })
-      })
-  }, err => console.error(err))
+  const tabs = await browser.tabs.query({
+    url: ["*://*.reddit.com/*"]
+  })
+  tabs.forEach(tab => {
+    browser.tabs.sendMessage(tab.id, {
+      action: "refresh",
+    }).then(res => console.log(res), err => console.error(err))
   })
 }
 
