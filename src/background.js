@@ -64,18 +64,19 @@ function onMessage(message, sender, respond) {
     return
   }
 
-  if (message.action === 'status') {
-    handleStatusUpdate(message, sender, respond)
-  }
-  else if (message.action === 'newmatches') {
-    console.log('s', message)
-    handleNewMatches(message, sender, respond)
-  }
-  else if (message.action === 'keywords') {
-    return handleKeywords()
-  }
-  else if (message.action === 'popup-new-filter') {
-    handlePopupNewFilter(message.content)
+  switch(message.action) {
+    case 'status':
+      handleStatusUpdate(message, sender, respond)
+      break
+    case 'newmatches':
+      handleNewMatches(message, sender, respond)
+      break
+    case 'keywords':
+      return handleKeywords()
+      break
+    case 'popup-new-filter':
+      return handlePopupNewFilter(message.content)
+      break
   }
 }
 
