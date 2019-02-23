@@ -52,6 +52,7 @@ function update(data) {
 // and number of matched listings.
 function createList(matches) {
   const list = document.querySelector('ul')
+  list.innerHTML = ''
 
   Object.keys(matches).forEach(k => {
     const item = createListItem({key: k, matches: matches[k]})
@@ -98,5 +99,12 @@ function onClickListItem(k) {
     
   })
 }
+
+
+browser.runtime.onMessage.addListener((message, sender, respond) => {
+  if (message.action === 'new-matches-registered') {
+    requestStatusUpdate()
+  }
+})
 
 requestStatusUpdate()

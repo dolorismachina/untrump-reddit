@@ -123,6 +123,10 @@ function handleStatusUpdate(message, sender, respond) {
 function handleNewMatches(message, sender, respond) {
   matches = message.entries
   updateBadgeText(message.removed)
+
+  browser.runtime.sendMessage({
+    action: 'new-matches-registered'
+  })
 }
 
 
