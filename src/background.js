@@ -91,16 +91,27 @@ async function handlePopupNewFilter(content) {
     keywords: filters.keywords
   })
 
+  await refreshFrontend()
+
+  return matches
+}
+
+
+async function refreshFrontend() {
   const tabs = await browser.tabs.query({
     url: ["*://*.reddit.com/*"]
   })
-  tabs.forEach(tab => {
-    browser.tabs.sendMessage(tab.id, {
-      action: "refresh",
-    }).then(res => console.log(res), err => console.error(err))
-  })
-}
 
+  const promises = []
+  tabs.forEach(tab => {
+    const promise = browser.tabs.sendMessage(tab.id, {
+      action: 'refresh'
+    })
+    promises.push(promise)
+  })
+
+  return Promise.all(promises)
+}
 
 function handleStatusUpdate(message, sender, respond) {
   respond({
